@@ -1,0 +1,29 @@
+﻿
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="Subscribe" class="tech-btm">
+	<h4>Mail Bültenimize Abone Olun..</h4>
+	<p>Teknoloji,yazılım ve diğer bloglar.. </p>
+	
+		<input type="email" placeholder="Email" required="" id="Mail" name="Mail">
+        <button id="submitBtn" class="btn btn-primary read-m">Abone ol</button>
+
+    
+</div>
+<script>
+    $(document).ready(function () {
+        $("#submitBtn").click(function () {
+            var inputData = $("#Mail").val();
+               $.ajax({
+                type: "POST",
+                url: "@Url.Action("SubscribeMail", "Newsletter")",
+                data: { p : inputData },
+                success: function (result) {
+                    $("#Subscribe").html(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
